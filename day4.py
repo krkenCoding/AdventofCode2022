@@ -7,13 +7,17 @@ def sectionSplitter(assignment):
         sectionArrays.append(section)
     return sectionArrays
 
-# For part b...
+# For part b, we wanted to know if there's ANY overlap at all
+# and so...
 def overlapChecker(array1, array2):
-    completeOverlap = True
+    # ...completeOverlap has been renamed to overlap...
+    overlap = False
     for number in array2:
-        if number not in array1:
-            completeOverlap = False
-    return completeOverlap
+        if number in array1:
+            # ...and False has been set to true...
+            overlap = True
+    # This will now return a true if there are any overlaps at all no matter how small
+    return overlap
 
 
 f = open("input.txt", "r")
@@ -34,7 +38,7 @@ for line in content:
     else:
         if overlapChecker(elf2Assignment, elf1Assignment):
             amountOfCompleteOverlaps += 1
-            
+
 print(amountOfCompleteOverlaps)
 
 # The working code I have
