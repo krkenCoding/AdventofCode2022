@@ -22,10 +22,12 @@ content = f.readlines()
 f.close()
 for line in content:
     line = line.replace("\n", "").split(" ")
-    amountToMove = line[1]
+    amountToMove = int(line[1])
     fromPosition = line[3]
     toPosition = line[5]
 
+    # Part A
+    """
     for i in range(int(amountToMove)):
         fromColumnFocus = "column" + fromPosition
         fromArrayFocus = columnStacks[fromColumnFocus]
@@ -34,6 +36,30 @@ for line in content:
         lastElement = fromArrayFocus[-1]
         fromArrayFocus.pop()
         toArrayFocus.append(lastElement)
+    stackMessage = ""
+    for key in columnStacks:
+        columnFocus = columnStacks[key]
+        stackMessage += columnFocus[-1]
+    print(stackMessage)
+        """
+
+    # Part B
+    fromColumnFocus = "column" + fromPosition
+    fromArrayFocus = columnStacks[fromColumnFocus]
+
+    print("old fromArray:", fromArrayFocus)
+    movingStack = []
+    for stack in range(amountToMove):
+        positionInStack = amountToMove - stack
+        movingStack.append(fromArrayFocus[-positionInStack])
+        fromArrayFocus.pop(-positionInStack)
+    print("new fromArray:", fromArrayFocus)
+    print("movingStack:", movingStack)
+    print("")
+
+    toColumnFocus = "column" + toPosition
+    toArrayFocus = columnStacks[toColumnFocus]
+    toArrayFocus.extend(movingStack)
 
 stackMessage = ""
 for key in columnStacks:
